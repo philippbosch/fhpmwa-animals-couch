@@ -66,13 +66,9 @@ function updateSightings() {
             if (result.total_rows > 0) {
                 // … diese einen nach dem anderen durchgehen …
                 for (var i in result.rows) {
-                    // … und die Detaildaten abrufen …
-                    db.openDoc(result.rows[i].id, {
-                        'success': function(row) {
-                            // … und ein Listenelemenet erzeugen und einfügen.
-                            $('#sightings').append('<li class="arrow"><a href="http://maps.google.com/maps?q=' + encodeURI(row.animal) + '%40' + row.latitude + ',' + row.longitude + '">' + row.animal + ' (' + row.color + ')<div class="datetime">' + row.datetime + '</div></a></li>');
-                        }
-                    });
+                    var row = result.rows[i];
+                    // … und ein Listenelemenet erzeugen und einfügen.
+                    $('#sightings').prepend('<li class="arrow"><a href="http://maps.google.com/maps?q=' + encodeURI(row.animal) + '%40' + row.latitude + ',' + row.longitude + '">' + row.animal + ' (' + row.color + ')<div class="datetime">' + row.datetime + '</div></a></li>');
                 }
             } else {
                 // … wenn keine Datensätze vorhanden sind, entsprechende Nachricht einblenden.
