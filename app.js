@@ -66,7 +66,7 @@ function updateSightings() {
             if (result.total_rows > 0) {
                 // … diese einen nach dem anderen durchgehen …
                 for (var i in result.rows) {
-                    var row = result.rows[i];
+                    var row = result.rows[i].value;
                     // … und ein Listenelemenet erzeugen und einfügen.
                     $('#sightings').prepend('<li class="arrow"><a href="http://maps.google.com/maps?q=' + encodeURI(row.animal) + '%40' + row.latitude + ',' + row.longitude + '">' + row.animal + ' (' + row.color + ')<div class="datetime">' + row.datetime + '</div></a></li>');
                 }
